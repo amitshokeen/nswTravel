@@ -18,9 +18,11 @@ var trip_planner_page = function() {
 
     this.fillup_and_submit_trip_planner_form = function() {
         from_txt_box.sendKeys(testData.station1);
-        browser.sleep(browser_wait/2);
+        browser.sleep(browser_wait/5);
+        element(by.cssContainingText('div.list-group-item-title', 'North Sydney Station')).click();
         to_txt_box.sendKeys(testData.station2);
-        browser.sleep(browser_wait/2);
+        browser.sleep(browser_wait/5);
+        element(by.cssContainingText('div.list-group-item-title', 'Town Hall Station')).click();
         go_btn.click();
     };
 
