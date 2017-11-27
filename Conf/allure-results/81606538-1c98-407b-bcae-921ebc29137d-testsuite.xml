@@ -1,0 +1,17 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1511778120784' stop='1511778140822'>
+    <name>A trip request can be executed and results returned</name>
+    <title>A trip request can be executed and results returned</title>
+    <test-cases>
+        <test-case start='1511778120784' status='passed' stop='1511778140822'>
+            <name>Phileas executes a trip plan from "North Sydney Station" to "Town Hall Station"</name>
+            <title>Phileas executes a trip plan from "North Sydney Station" to "Town Hall Station"</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments>
+                <attachment title='Screenshot' source='1db0b39a-a457-40af-8aa1-a566042ef91f-attachment.png' type='image/png' size='233584'/>
+            </attachments>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>
