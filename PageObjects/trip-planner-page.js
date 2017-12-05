@@ -19,7 +19,24 @@ var trip_planner_page = function() {
 
     this.fillup_and_submit_trip_planner_form = function() {
         from_txt_box.sendKeys(testData.station1);
-        browser.sleep(browser_wait/5);
+        //browser.sleep(browser_wait/5);
+
+        /******** Fluent wait ******/
+        browser.manage().timeouts().implicitlyWait(0);
+        browser.wait(function() {
+            browser.sleep(2000);           
+            return element(by.cssContainingText(css_train_suggest, testData.station1)).isDisplayed()
+            .then(function (isDisplayed){
+                return isDisplayed;
+            },
+            function (error) {
+                return false;
+            });
+        }, 20*1000);
+
+
+        /**************/
+
         element(by.cssContainingText(css_train_suggest, testData.station1)).click();
         to_txt_box.sendKeys(testData.station2);
         browser.sleep(browser_wait/5);
