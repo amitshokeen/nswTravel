@@ -11,6 +11,7 @@ var to_txt_box = $('#search-input-To');
 var go_btn = $('#search-button');
 var trains_list = $$('div.tripResults'); 
 var css_train_suggest = 'div.list-group-item-title';
+var EC = protractor.ExpectedConditions;
 
 var trip_planner_page = function() {
     this.navigate_to_trip_planner_page = function(){
@@ -21,10 +22,10 @@ var trip_planner_page = function() {
         from_txt_box.sendKeys(testData.station1);
         //browser.sleep(browser_wait/5);
 
-        /******** Fluent wait ******/
+        /******** The below code is just to understand how 'Fluent wait' works ******
         browser.manage().timeouts().implicitlyWait(0);
         browser.wait(function() {
-            browser.sleep(2000);           
+            browser.sleep(100);           
             return element(by.cssContainingText(css_train_suggest, testData.station1)).isDisplayed()
             .then(function (isDisplayed){
                 return isDisplayed;
@@ -32,14 +33,18 @@ var trip_planner_page = function() {
             function (error) {
                 return false;
             });
-        }, 20*1000);
+        }, 5*1000);
+        **************/
 
-
-        /**************/
-
+        /*** using ExpectedConditions **
+         * refer: http://www.protractortest.org/#/api?view=ProtractorExpectedConditions
+        */
+        browser.wait(EC.visibilityOf(element(by.cssContainingText(css_train_suggest, testData.station1)), 5000));
+        
         element(by.cssContainingText(css_train_suggest, testData.station1)).click();
         to_txt_box.sendKeys(testData.station2);
-        browser.sleep(browser_wait/5);
+        //browser.sleep(browser_wait/5);
+        browser.wait(EC.visibilityOf(element(by.cssContainingText(css_train_suggest, testData.station2)), 5000));
         element(by.cssContainingText(css_train_suggest, testData.station2)).click();
         go_btn.click();
     };
