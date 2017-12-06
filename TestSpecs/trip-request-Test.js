@@ -2,7 +2,7 @@
  * Created by Amit on 27/11/2017
  */
 
-browser.ignoreSynchronization = true;
+browser.ignoreSynchronization = true; //the transportnsw site is a non-angular so we ignore the angular sync part.
 var common = require('../Conf/common.json');
 var testData = require('../TestData/TestData.json');
 var trip_url = common.url + common.trip;
