@@ -96,7 +96,15 @@ For more information, visit http://aka.ms/webdriver
 
 7. so this is a version compatibility isue... 
 
-<work in progress>
+8. checked verison of edge browser: Microsoft Edge 40.15063.674.0
+Microsoft EdgeHTML 15.15063
+
+9. Apparently, there is a Release 15063 on https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/
+I'll try this now...
+
+10. it finally works!
+
+Moral of the story: Check the Micrsoft EdgeHTML version to get an idea of the WebDriver Release number to use.
 ________________________________________________________________________________________________________
 
 *************
