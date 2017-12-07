@@ -1,0 +1,83 @@
+Date: 7 Dec 2017
+Author: Amit Shokeen
+Title: How to make protractor work with different browsers?
+________________________________________________________________________________________________________
+
+*************
+Chrome
+*************
+Working with the Chrome browser is the simplest.
+Inside the conf.js file let 'capabilities' look like this:
+capabilities:
+{
+	'browserName': "chrome"
+}
+
+That's all to start with. Of course more capabilities like version, platform, ignoreProtectedModeSettings etc. can be googled and used as needed.
+________________________________________________________________________________________________________
+
+*************
+Firefox
+*************
+Uptil a few months ago, working with Firefox was a really unpleasant experience. This was due to the fact that the Firefox team has changed their browser drastically and for security reasons scrapped their original selenium driver. They replaced the older driver with a new one called the 'geckoDriver'. 
+The geckoDriver project has contributions pouring in from a very few developers and is severly malnourished in its capabilities as compared to the chromeDriver. More on the same can be googled as needed.
+Anyway, all you have to do is run the command: 
+C:\your\path>webdriver-manager update
+This will take care of the firefox geckoDriver.
+After that, just like for chrome, have this in your conf.js file:
+capabilities:
+{
+	'browserName': "firefox"
+}
+
+That's all to start with. Of course more capabilities can be googled up as needed.
+________________________________________________________________________________________________________
+
+*************
+IE
+*************
+This one's a bit tricky and works extremely slowly. Microsoft wants people to use Edge instead of IE and that further complicates matters. 
+If your run the command:
+C:\your\path>webdriver-manager update
+It will download IEDriverServer3.8.0.zip, unzip it and make IEDriverServer3.8.0.exe available. 
+Apparently, this is of 32-bitness and will not work on 64-bit systems.
+
+Additionally, there is an open issue: https://github.com/angular/protractor/issues/4445
+Getting error "WebDriverError: Invalid timeout type specified: ms" 
+This has been 'Open' since 15 Aug 2017
+
+To workaround this issue, below are the steps:
+1. download IEDriverServer_x64_3.8.0.zip from http://selenium-release.storage.googleapis.com/index.html?path=3.8/
+2. place the downloaded zip folder in this location on your system:
+C:\Users\amits\AppData\Roaming\npm\node_modules\protractor\node_modules\webdriver-manager\selenium
+<you can get an idea of this location from the "webdriver-manager start" command>
+3. unzip the file > you should get a file named: IEDriverServer.exe
+4. rename the older IEDriverServer3.8.0.exe to IEDriverServer3.8.0_old.exe
+5. rename the newer IEDriverServer.exe to IEDriverServer3.8.0.exe
+6. as per the discussion here: https://github.com/angular/protractor/issues/4445
+do this:
+C:\your\path>webdriver-manager clean
+C:\your\path>webdriver-manager update --ie --versions.standalone=3.4.0 --versions.ie=3.4.0
+C:\your\path>webdriver-manager start --versions.standalone=3.4.0
+These three steps will take care of the version compatibility problem between the standalone selenium server and the ie.
+Now you can start the protractor test with this in the conf.js file:
+capabilities:
+{
+ 'browserName': "internet explorer",
+ 'platform': 'ANY',
+ 'version': '11'
+}
+That's all to start with, though very slow. Of course more capabilities can be googled up as needed.
+Keep a lookout for a resolution to the 4445 issue.
+________________________________________________________________________________________________________
+
+*************
+Edge
+*************
+<work in progress>
+________________________________________________________________________________________________________
+
+*************
+Opera
+*************
+<work in progress>
