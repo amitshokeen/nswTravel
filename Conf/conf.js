@@ -3,17 +3,27 @@ var common = require('./common.json');
 
 exports.config = {
     
-	useAllAngular2AppRoots: true,
+	//useAllAngular2AppRoots: true, //not needed for non-angular projects
 	seleniumAddress: 'http://localhost:4444/wd/hub',
 	//directConnect: true,
 	allScriptsTimeout: 60000,
 	maxSessions: 1,
 
-	multiCapabilities: [
+	//multiCapabilities: [
+		capabilities: //[
 		{
-			'browserName': "chrome"
-		}
-	],
+			//'browserName': "chrome" //this works
+			/*
+			'browserName': "internet explorer",
+			'platform': 'ANY',
+			'version': '11',
+			'ignoreProtectedModeSettings': true
+			*/
+			//'browserName': "firefox" //this works 
+			//'seleniumArgs': ['-Dwebdriver.edge.driver=C:/Users/amits/AppData/Roaming/npm/node_modules/protractor/node_modules/webdriver-manager/selenium/MicrosoftWebDriver.exe'],
+			'browserName': "MicrosoftEdge"
+		},
+	//],
 	onPrepare: function () {
 		// Override the timeout for webdriver.
 		browser.driver.manage().timeouts().implicitlyWait(10000);
@@ -37,6 +47,6 @@ exports.config = {
 		amit: ['../TestSpecs/trip-request-Test.js']
 	},
 	jasmineNodeOpts: {
-		defaultTimeoutInterval: 500000
+		defaultTimeoutInterval: 9*60*1000
 	}
 };

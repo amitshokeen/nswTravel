@@ -74,6 +74,28 @@ ________________________________________________________________________________
 *************
 Edge
 *************
+I found it tricky and non-intuitive to work with this one.
+Here are the steps I took thus far...and still not there yet:
+1. download MicrosoftWebDriver.exe from https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/
+2. this is what capabilities in conf.js looks like thus far:
+capabilities:
+{
+	'browserName': "MicrosoftEdge"
+}
+
+3.start the webdriver-manager like this:
+C:\your\path>webdriver-manager start --edge C:\Users\amits\AppData\Roaming\npm\node_modules\protractor\node_modules\webdriver-manager\selenium\MicrosoftWebDriver.exe
+
+4. Now run your test. It exits with error code 199
+...WebDriverError: Timed out waiting for driver server to start.
+
+5. look closely at the selenium server log. You will notice this:
+This version of MicrosoftWebDriver.exe is not compatible with the installed version of Windows 10.
+For more information, visit http://aka.ms/webdriver
+16:41:50.399 ERROR - org.apache.commons.exec.ExecuteException: Process exited with an error: 1 (Exit value: 1)
+
+7. so this is a version compatibility isue... 
+
 <work in progress>
 ________________________________________________________________________________________________________
 
